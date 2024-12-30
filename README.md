@@ -36,6 +36,11 @@ The steps below outline how to set up aws with existing aws s3 buckets
 
 5. Add Service Princial to Databricks Workspace: Navigate to your workspace, click on permissions, add permissions. Add your Service Principal(s) here
 
+6. As part of your workspace setup it should have created an IAM role to use s3 buckets. 
+   - Ex. STACK_NAME_FROM_TEMPLATE-08afe-role
+
+7. Add access to your S3 Buckets -> IAM -> 
+
 5. Deploy AWS IAM Role: In databrickss3roles line 10 of main.tf we need to update the principal to include your Servuce Principal Name
    - Ex. AWS: "arn:aws:iam::YOUR_ACCOUNT_ID:role/service-role/YOUR_SERVICE_PRINCIPAL_NAME"
 
