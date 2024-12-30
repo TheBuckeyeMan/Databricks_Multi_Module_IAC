@@ -60,30 +60,24 @@ The steps below outline how to set up aws with existing aws s3 buckets
    - Add to Github Secret named HOST
    - Update multi-module.yml lines 56-57 if they do not yet exist already
 
+3. In databricks_cluster main.tf line 13 add in the IAM Role that was auto created when the databricks workspace was made. 
 3. Provision the module databricks_cluster to deploy the cluster in the multi module repo
    - Check to make sure all Repo secrets are set up
 
 # Mounting the S3 Buckets
 
-
-
-
-
 9. Your Databricks Workspace Now has access to your S3 Buckets(Raw, Trusted, Refined)
 
-3. Deploy the module databrickss3roles via terraform to get the nessasary IAM Roles created in AWS 
-   - Modify the Bucket ARN's as needed to grant access to the required buckets.
-   - Update the Service Principal for your databricks account and aws region
 
-
-5. Click on Create Storage Configuration -> Give it the name of the level of medalian you are on(Raw, Trusted, Refined). i
-   - Add Bucket name and IAM Role that alows access to AWS S3(Create one if you do not already have one)
+# Cost Breakdown
+Assumes 4 jobs per month 
+Assumes storage fees are not involved
 
 
 
 
 
-# Quickstart Configuration
+# Quickstart Configuration Videos
 Follow Videos Here: https://www.databricks.com/resources/webinar/databricks-on-aws-free-training-series/thank-you?scid=7018Y000001Fi0MQAS&utm_source=google&utm_adgroup=141204956364&utm_offer=databricks-on-aws-free-training-series-track&utm_term=aws+databricks&gad_source=1&gbraid=0AAAAABYBeAhFuU2-ODMN7PPzake7Ny-Xj&gclid=CjwKCAiAg8S7BhATEiwAO2-R6mpX5Iix2s37psCDoDT7cxy6JarOudM077-LwE-NJ4TTmm7A06pXKRoC2PEQAvD_BwE
 
 
