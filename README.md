@@ -22,7 +22,7 @@ The steps below outline how to set up aws with existing aws s3 buckets
 5. At this point you will be redirected to a new page where you will see an event that is creating your Stack
    - This will take a few min but after it is created you will see the workspace in Databricks
 
-# Add AWS S3 buckets to Databricks Workspace
+# Prepare S3 Buckets for Mounting
    
 1. Navigate to workspace: Navigate to your Databricks workspace, click on it. In the top right corner click Open Workspace
 
@@ -31,18 +31,44 @@ The steps below outline how to set up aws with existing aws s3 buckets
 3. Click on Users and Groups - Next to your name and email you should see Admin account
    - If you do not see admin account and need elivated, contact your workspace admin to elevate access if needed
 
-4. Create Service Prinicpal(Or use Exusting): Selecr Service principals and click Add Service Prinicipal
+4. Create Service Prinicpal(Or use Existing): Selecr Service principals and click Add Service Prinicipal
    - Add a Service Principal(SP) name
 
 5. Add Service Princial to Databricks Workspace: Navigate to your workspace, click on permissions, add permissions. Add your Service Principal(s) here
 
-6. As part of your workspace setup it should have created an IAM role to use s3 buckets. 
-   - Ex. STACK_NAME_FROM_TEMPLATE-08afe-role
+6. Deploy AWS IAM Role: In databrickss3roles line 10 of main.tf we need to update the following
+   - Line 10 main.tf: Ex. "AWS": "arn:aws:iam::DATABRICKS_AWS_ACCOUNT_ID:root" --> this is NOT your normal AWS Account ID
+   - ARN's of S3 Buckets we are looking at alow databricks to have access to
+   - can remove multi-module.yml lines 56-57 if nessasary, we will add them back later if you do not have the values yet
 
-7. Add access to your S3 Buckets -> IAM -> 
+7. Log into databricks, Before you click on your workspace, click on Cloud Resources -> Add Credential Configuration
+   - Add a name Ex. Raw,Trusted,Refined Bucket Access
+   - Add ARN of IAM Role we created in step 6
 
-5. Deploy AWS IAM Role: In databrickss3roles line 10 of main.tf we need to update the principal to include your Servuce Principal Name
-   - Ex. AWS: "arn:aws:iam::YOUR_ACCOUNT_ID:role/service-role/YOUR_SERVICE_PRINCIPAL_NAME"
+8. On the same page, click on the tag Storage Configuration. Add all the required S3 buckets with their ARN's that you granted databricks access when provisioning your IAM Roles(Step 6)
+
+9. Your S3 buckets are ready to be mounted, before we mount, we must add a compute resource(cluster).
+
+# Provisioning the Cluster
+
+1. Generate PAT: Log into Databricks, click on your workspace. In the top right corner click on your icon and select settings -> developer -> Access Tokens -> Generate new Token
+   - Add token to Environment Variables in Github Secrets named PAT
+   - Update multi-module.yml lines 56-57 if they do not yet exist already
+
+2. Get Host URL -> Log into your workspace, copy the url, Remove Queery Params:
+   - Ex: https://dbc-b6fb6065-385e.cloud.databricks.com
+   - Add to Github Secret named HOST
+   - Update multi-module.yml lines 56-57 if they do not yet exist already
+
+3. Provision the module databricks_cluster to deploy the cluster
+
+# Mounting the S3 Buckets
+
+
+
+
+
+9. Your Databricks Workspace Now has access to your S3 Buckets(Raw, Trusted, Refined)
 
 3. Deploy the module databrickss3roles via terraform to get the nessasary IAM Roles created in AWS 
    - Modify the Bucket ARN's as needed to grant access to the required buckets.

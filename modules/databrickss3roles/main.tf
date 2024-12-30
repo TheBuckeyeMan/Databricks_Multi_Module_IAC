@@ -7,7 +7,7 @@ resource "aws_iam_role" "databricks_s3_access" {
       {
         Effect = "Allow",
         Principal = {
-            "AWS": "arn:aws:iam::414351767826:root"
+            "AWS": "arn:aws:iam::<Databricks_AWS_ACCOUNT_ID>:root"
         },
         Action = "sts:AssumeRole"
       }
