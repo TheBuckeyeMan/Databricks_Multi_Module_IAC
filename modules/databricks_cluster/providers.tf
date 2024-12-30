@@ -1,4 +1,11 @@
 terraform {
+  required_providers {
+    databricks = {
+      source  = "databrickslabs/databricks"
+      version = "~> 1.10.0"
+    }
+  }
+
   cloud {
     organization = "1220-IAC"
     workspaces {
@@ -6,6 +13,7 @@ terraform {
     }
   }
 }
+
 provider "aws" {
     region = var.region
     access_key  = var.aws_access_key
