@@ -7,8 +7,7 @@ resource "aws_iam_role" "databricks_s3_access" {
       {
         Effect = "Allow",
         Principal = {
-        #   Service = "databricks.amazonaws.com"
-            AWS: "*"
+            AWS: "arn:aws:iam::339712758982:role/service-role/DatabricksYoutubeChannelServicePrincipal"
         },
         Action = "sts:AssumeRole"
       }
