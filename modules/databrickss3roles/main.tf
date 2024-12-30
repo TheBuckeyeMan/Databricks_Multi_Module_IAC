@@ -7,7 +7,8 @@ resource "aws_iam_role" "databricks_s3_access" {
       {
         Effect = "Allow",
         Principal = {
-          Service = "databricks.amazonaws.com"
+        #   Service = "databricks.amazonaws.com"
+            AWS: "*"
         },
         Action = "sts:AssumeRole"
       }
