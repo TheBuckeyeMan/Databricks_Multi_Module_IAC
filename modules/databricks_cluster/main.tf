@@ -11,5 +11,9 @@ resource "databricks_cluster" "cost_effective_cluster" {
 
   aws_attributes {
     instance_profile_arn = "arn:aws:iam::339712758982:role/DatabricksS3Access" # Your IAM role for bucket access
+    availability          = "ON_DEMAND"
+    ebs_volume_type       = "GENERAL_PURPOSE_SSD"  # Use gp3
+    ebs_volume_count      = 1                     # Number of EBS volumes
+    ebs_volume_size       = 1                     # Size in GB
   }
 }
