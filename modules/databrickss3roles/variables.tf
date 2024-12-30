@@ -13,3 +13,13 @@ variable "region" {
     type = string
     default = "us-east-2"
 }
+
+variable "PAT" {
+    description = "PAT Token"
+    type = string
+}
+
+variable "HOST" {
+    description = "HOST URL"
+    type = string
+}

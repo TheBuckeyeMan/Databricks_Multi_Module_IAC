@@ -60,7 +60,7 @@ The steps below outline how to set up aws with existing aws s3 buckets
    - Add to Github Secret named HOST
    - Update multi-module.yml lines 56-57 if they do not yet exist already
 
-3. In databricks_cluster main.tf line 13 add in the IAM Role that was auto created when the databricks workspace was made. 
+3. In databricks_cluster main.tf line 13 add in the IAM Role ARN for the 
 3. Provision the module databricks_cluster to deploy the cluster in the multi module repo
    - Check to make sure all Repo secrets are set up
 
