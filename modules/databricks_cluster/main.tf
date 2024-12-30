@@ -14,6 +14,6 @@ resource "databricks_cluster" "cost_effective_cluster" {
     availability          = "ON_DEMAND"
     ebs_volume_type       = "GENERAL_PURPOSE_SSD"  # Use gp3
     ebs_volume_count      = 1                     # Number of EBS volumes
-    ebs_volume_size       = 1                     # Size in GB
+    ebs_volume_size       = 32                    # Size in GB
   }
 }
