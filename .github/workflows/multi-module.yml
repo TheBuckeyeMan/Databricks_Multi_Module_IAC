@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       module:
-        description: 'Select the IaC module to deploy [databrickss3roles]'
+        description: 'Select the IaC module to deploy [databrickss3roles,databricks_cluster]'
         required: true
         type: string
       environment:
@@ -40,6 +40,7 @@ jobs:
       run: |
         case "${{ github.event.inputs.module }}" in
         databrickss3roles) echo "module_path=modules/databrickss3roles" >> $GITHUB_ENV ;;
+        databricks_cluster) echo "module_path=modules/databricks_cluster" >> $GITHUB_ENV ;;
         *) echo "Invalid module selected"; exit 1 ;;
         esac
 
@@ -52,4 +53,6 @@ jobs:
         terraform apply -auto-approve \
           -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
           -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
+          -var="PAT=${{ secrets.PAT }}" \
+          -var="HOST=${{ secrets.HOST }}" \
       working-directory: ${{ env.module_path }}
