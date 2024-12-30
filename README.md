@@ -10,12 +10,14 @@ The steps below outline how to set up aws with existing aws s3 buckets
 
 2. If you have not already signed up for databricks, create a databricks account
 
-3. Click on create workspace -> Select Manual
+3. Line 10 on module databrickss3roles ensure the value is Service = "ec2.amazonaws.com" and deploy the IAM Role
+
+4. Click on create workspace -> Select Manual
    - Give your workspace a name for your project, select the same aws reion your resources are set up in
    - Select Region
    - Give Storage Config a name(Raw, Trusted, or Refined)(Raw recomended)
    - Add the bucket name of the Raw, Trusted, or Refined bucket(Raw recomended)
-   - Add a placeholder IAM Role, you will update this later
+   - Add the IAM role ARN you created in step 3
    
 
 3. Deploy the module databrickss3roles via terraform to get the nessasary IAM Roles created in AWS 
