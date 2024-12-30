@@ -10,7 +10,7 @@ resource "databricks_cluster" "cost_effective_cluster" {
   }
 
   aws_attributes {
-    instance_profile_arn = "arn:aws:iam::339712758982:role/databricks-youtube-dev-workspace-stack-08afe-catalog-role" # Your IAM role to provision cluster - Is pregenerated
+    instance_profile_arn = "arn:aws:iam::339712758982:role/DatabricksClusterDeploymentIAM" # Your IAM role to provision cluster - From the roles you provisioned earlier
     availability          = "ON_DEMAND"
     ebs_volume_type       = "GENERAL_PURPOSE_SSD"  # Use gp3
     ebs_volume_count      = 1                     # Number of EBS volumes
