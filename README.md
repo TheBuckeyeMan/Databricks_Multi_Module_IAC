@@ -1,4 +1,4 @@
-# Databricks_AWS_Onboarding
+# Databricks AWS Onboarding
 Repo to onboard Databricks to AWS
 
 # Manual Workspace Configuration
@@ -33,6 +33,8 @@ The steps below outline how to set up aws with existing aws s3 buckets
 
 4. Create Service Prinicpal(Or use Exusting): Selecr Service principals and click Add Service Prinicipal
    - Add a Service Principal(SP) name
+
+5. Add Service Princial to Databricks Workspace: Navigate to your workspace, click on permissions, add permissions. Add your Service Principal(s) here
 
 5. Deploy AWS IAM Role: In databrickss3roles line 10 of main.tf we need to update the principal to include your Servuce Principal Name
    - Ex. AWS: "arn:aws:iam::YOUR_ACCOUNT_ID:role/service-role/YOUR_SERVICE_PRINCIPAL_NAME"
