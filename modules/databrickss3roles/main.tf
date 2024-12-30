@@ -7,7 +7,7 @@ resource "aws_iam_role" "databricks_s3_access" {
       {
         Effect = "Allow",
         Principal = {
-          Service = "databricks.amazonaws.com"
+          Service = "ec2.amazonaws.com"
         },
         Action = "sts:AssumeRole"
       }
@@ -17,7 +17,7 @@ resource "aws_iam_role" "databricks_s3_access" {
 
 # IAM Policy for Specific Buckets
 resource "aws_iam_policy" "databricks_s3_limited_access" {
-  name = "DatabricksS3LimitedAccessPolicy"
+  name = "DatabricksS3LimitedAccessYoutubeBuckets"
 
   policy = jsonencode({
     Version = "2012-10-17",
