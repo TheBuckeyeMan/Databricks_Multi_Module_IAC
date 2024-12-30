@@ -17,7 +17,7 @@ resource "aws_iam_role" "databricks_s3_access" {
 
 # IAM Policy for Specific Buckets
 resource "aws_iam_policy" "databricks_s3_limited_access" {
-  name = "DatabricksS3LimitedAccessYoutubeBuckets"
+  name = "DatabricksS3LimitedAccessYoutubeBuckets1"
 
   policy = jsonencode({
     Version = "2012-10-17",
