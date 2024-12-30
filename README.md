@@ -60,7 +60,8 @@ The steps below outline how to set up aws with existing aws s3 buckets
    - Add to Github Secret named HOST
    - Update multi-module.yml lines 56-57 if they do not yet exist already
 
-3. Provision the module databricks_cluster to deploy the cluster
+3. Provision the module databricks_cluster to deploy the cluster in the multi module repo
+   - Check to make sure all Repo secrets are set up
 
 # Mounting the S3 Buckets
 
