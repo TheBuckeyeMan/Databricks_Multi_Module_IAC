@@ -84,3 +84,58 @@ The steps below outline how to set up aws with existing aws s3 buckets
 
 # Quickstart Configuration
 Follow Videos Here: https://www.databricks.com/resources/webinar/databricks-on-aws-free-training-series/thank-you?scid=7018Y000001Fi0MQAS&utm_source=google&utm_adgroup=141204956364&utm_offer=databricks-on-aws-free-training-series-track&utm_term=aws+databricks&gad_source=1&gbraid=0AAAAABYBeAhFuU2-ODMN7PPzake7Ny-Xj&gclid=CjwKCAiAg8S7BhATEiwAO2-R6mpX5Iix2s37psCDoDT7cxy6JarOudM077-LwE-NJ4TTmm7A06pXKRoC2PEQAvD_BwE
+
+
+# How to remove Databricks Resources - To avoid control plan fixed costs. 
+1. Delete the Databricks Workspace
+The best way to avoid charges is to completely delete your Databricks workspace. This will eliminate both control plane fees and any potential compute or storage costs.
+
+Steps to Delete the Workspace:
+
+Log in to your AWS Management Console.
+Go to CloudFormation.
+Find the stack that created your Databricks workspace. It may be named something like:
+databricks-<workspace-name>-workspace-stack
+Select the stack and click Delete.
+Confirm the deletion.
+This will terminate the workspace and associated resources (e.g., default IAM roles and S3 buckets).
+
+2. Terminate All Clusters
+If you want to keep the workspace but ensure you’re not charged for compute:
+
+Log in to your Databricks workspace.
+Go to the Compute tab.
+Terminate any running clusters.
+Ensure there are no scheduled jobs that could start a cluster.
+3. Delete or Empty Associated S3 Buckets
+If your workspace was storing data in S3:
+
+Log in to the AWS Management Console.
+Go to S3.
+Find the buckets associated with your workspace (e.g., databricks-youtube-dev-workspace-stack-08afe-bucket).
+Delete the buckets or empty their contents to avoid storage charges.
+4. Revoke IAM Roles
+Remove any IAM roles associated with your Databricks workspace to prevent accidental resource access.
+
+Steps:
+
+Go to IAM → Roles in the AWS Console.
+Find roles created for Databricks (e.g., databricks-youtube-dev-workspace-stack-08afe-role).
+Detach policies and delete the roles.
+5. Monitor AWS Billing
+Check your AWS billing dashboard to ensure there are no unexpected charges:
+
+Go to Billing → Bills in the AWS Console.
+Review the Databricks and S3 sections for any active charges.
+Set up a billing alarm to notify you of charges exceeding $1 (or another threshold):
+Go to CloudWatch → Alarms → Create Alarm.
+Select the Billing metric.
+6. Cancel Databricks Subscription
+If you subscribed to Databricks via the AWS Marketplace:
+
+Go to AWS Marketplace → Subscriptions.
+Locate the Databricks subscription and cancel it.
+Confirming No Further Charges
+After following these steps, you can verify that your AWS resources (S3 buckets, IAM roles, compute) are no longer active.
+Databricks workspace charges should stop once the workspace is deleted.
+Let me know if you need detailed help with any of these steps! 🚀
