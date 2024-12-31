@@ -64,6 +64,8 @@ The steps below outline how to set up aws with existing aws s3 buckets
 
 4. In databricks console, click on your proile -> user preferences -> Cloud Resources -> Credential Configuration -> Add the IAM Role ARN For DatabricksClusterDeploymentIAM(IAM Role provisioned earlier)
 
+5. Select your workspace. then, open workspace. Then click on your user icon -> settings -> Security -> Instance Profiles -> Add profile. Add in the Instance Profile ARN(Has its own syntax so check)
+
 3. Provision the module databricks_cluster to deploy the cluster in the multi module repo
    - Check to make sure all Repo secrets are set up
 
@@ -85,8 +87,11 @@ Assumes storage fees are not involved
 # Quickstart Configuration Videos
 Follow Videos Here: https://www.databricks.com/resources/webinar/databricks-on-aws-free-training-series/thank-you?scid=7018Y000001Fi0MQAS&utm_source=google&utm_adgroup=141204956364&utm_offer=databricks-on-aws-free-training-series-track&utm_term=aws+databricks&gad_source=1&gbraid=0AAAAABYBeAhFuU2-ODMN7PPzake7Ny-Xj&gclid=CjwKCAiAg8S7BhATEiwAO2-R6mpX5Iix2s37psCDoDT7cxy6JarOudM077-LwE-NJ4TTmm7A06pXKRoC2PEQAvD_BwE
 
+# Notes
+1. Admin C0nsole: If you are admin, you can get access to admin console. Log into the workspace click on your icon and select settings, this is the admin page.
 
-# How to remove Databricks Resources - To avoid control plan fixed costs. 
+
+# How to remove Databricks Resources - Deprovision Workspace
 1. Delete the Databricks Workspace
 The best way to avoid charges is to completely delete your Databricks workspace. This will eliminate both control plane fees and any potential compute or storage costs.
 
@@ -138,4 +143,3 @@ Locate the Databricks subscription and cancel it.
 Confirming No Further Charges
 After following these steps, you can verify that your AWS resources (S3 buckets, IAM roles, compute) are no longer active.
 Databricks workspace charges should stop once the workspace is deleted.
-Let me know if you need detailed help with any of these steps! 🚀
